@@ -1,0 +1,8 @@
+D:\data\RiderProject\MapTeleport\bin\Debug\net6.0\MapTeleport.deps.json
+D:\data\RiderProject\MapTeleport\bin\Debug\net6.0\MapTeleport.dll
+D:\data\RiderProject\MapTeleport\obj\Debug\net6.0\MapTeleport.csproj.AssemblyReference.cache
+D:\data\RiderProject\MapTeleport\obj\Debug\net6.0\MapTeleport.GeneratedMSBuildEditorConfig.editorconfig
+D:\data\RiderProject\MapTeleport\obj\Debug\net6.0\MapTeleport.AssemblyInfoInputs.cache
+D:\data\RiderProject\MapTeleport\obj\Debug\net6.0\MapTeleport.AssemblyInfo.cs
+D:\data\RiderProject\MapTeleport\obj\Debug\net6.0\MapTeleport.csproj.CoreCompileInputs.cache
+D:\data\RiderProject\MapTeleport\obj\Debug\net6.0\MapTeleport.dll
