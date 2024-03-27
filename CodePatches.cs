@@ -13,6 +13,7 @@ namespace MapTeleport
         protected static CoordinatesList addedCoordinates;
         public static bool CheckClickableComponents(List<ClickableComponent> components, int topX, int topY, int x, int y)
         {
+            SMonitor.Log($"clicked x:{x} y:{y}", LogLevel.Debug);
             if (!Config.ModEnabled)
                 return false;
             if (addedCoordinates == null)
@@ -28,36 +29,41 @@ namespace MapTeleport
             {
                 return (a.bounds.Height * a.bounds.Width).CompareTo(b.bounds.Height * b.bounds.Width);
             });
-            foreach (ClickableComponent c in components)
+            foreach (ClickableComponent area in components)
             { 
-                // Offset so that this works for any screen size
-                string altId = $"{c.bounds.X - topX}.{c.bounds.Y - topY}";
-                Predicate<Coordinates> findMatch = (o) => o.id == c.myID || (c.myID == ClickableComponent.ID_ignore && o.altId == altId);
-                Coordinates co = coordinates.coordinates.Find(findMatch);
-                if (co == null)
+                // 计算偏移适配不同屏幕
+                string altId = $"{area.bounds.X - topX}.{area.bounds.Y - topY}";
+                // 匹配算法 从配置中读取当前点击区域的传送点
+                Predicate<Coordinates> findMatch = (o) => o.id == area.myID || (area.myID == ClickableComponent.ID_ignore && o.altId == altId);
+                Coordinates teleportCoordinate = coordinates.coordinates.Find(findMatch);
+                // 如果没有匹配到当前区域内的传送点
+                if (teleportCoordinate == null)
                 {
-                    co = addedCoordinates.coordinates.Find(findMatch);
-                    if (co == null)
+                    teleportCoordinate = addedCoordinates.coordinates.Find(findMatch);
+                    if (teleportCoordinate == null)
                     {
-                        if (c.myID == ClickableComponent.ID_ignore)
+                        if (area.myID == ClickableComponent.ID_ignore)
                         {
-                            addedCoordinates.Add(new Coordinates() { name = c.name, altId = altId, enabled = false });
+                            addedCoordinates.Add(new Coordinates() { name = area.name, altId = altId, enabled = false });
                         }
                         else
                         {
-                            addedCoordinates.Add(new Coordinates() { name = c.name, id = c.myID, enabled = false });
+                            addedCoordinates.Add(new Coordinates() { name = area.name, id = area.myID, enabled = false });
                         }
-                        SMonitor.Log($"Added: {{ \"name\":\"{c.name}\", \"id\":{c.myID}, \"altId\":\"{altId}\" }}", LogLevel.Trace);
+                        SMonitor.Log($"Added: {{ \"name\":\"{area.name}\", \"id\":{area.myID}, \"altId\":\"{altId}\" }}", LogLevel.Trace);
                         added = true;
                     }
                     // else check if the coordinate is enabled
                 }
+                
+                //SMonitor.Log($"now check area id:{area.myID} name:{area.name} label:{area.label} bounds.X:{area.bounds.X} bounds.Y{area.bounds.Y}", LogLevel.Debug);
+                //SMonitor.Log($"teleport coordinate x:{teleportCoordinate.x} y:{teleportCoordinate.y}", LogLevel.Debug);
 
-                if (c.containsPoint(x, y) && co.enabled)
+                if (area.containsPoint(x, y) && teleportCoordinate.enabled)
                 {
-                    SMonitor.Log($"Teleporting to {c.name} ({(co.altId != null ? co.altId : co.id)}), {co.mapName}, {co.x},{co.y}", LogLevel.Debug);
+                    SMonitor.Log($"Teleporting to {area.name} ({(teleportCoordinate.altId != null ? teleportCoordinate.altId : teleportCoordinate.id)}), {teleportCoordinate.mapName}, {teleportCoordinate.x},{teleportCoordinate.y}", LogLevel.Debug);
                     Game1.activeClickableMenu?.exitThisMenu(true);
-                    Game1.warpFarmer(co.mapName, co.x, co.y, false);
+                    Game1.warpFarmer(teleportCoordinate.mapName, teleportCoordinate.x, teleportCoordinate.y, false);
                     found = true;
                     break;
                 }
@@ -78,6 +84,8 @@ namespace MapTeleport
                 List<ClickableComponent> clickableComponents = new List<ClickableComponent>(__instance.points.Values);
                 bool found = CheckClickableComponents(clickableComponents, __instance.xPositionOnScreen, __instance.yPositionOnScreen, x, y);
                 return !found;
+                //SMonitor.Log($"clicked x:{x} y:{y}", LogLevel.Debug);
+                //return false;
             }
         }
 

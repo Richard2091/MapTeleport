@@ -2,213 +2,283 @@
     "coordinates": [
         {
             "id": 1001,
-            "mapName": "Desert",
-            "x": 6,
-            "y": 52
-        },
-        {
-            "id": 1002,
-            "mapName": "Farm",
-            "x": 64,
-            "y": 15
-        },
-        {
-            "id": 1003,
             "mapName": "Backwoods",
+            "detail": "Default",
+            "label": "边远森林",
             "x": 22,
             "y": 16
         },
         {
-            "id": 1004,
-            "mapName": "BusStop",
-            "x": 14,
-            "y": 22
-        },
-        {
-            "id": 1005,
-            "mapName": "Forest",
-            "x": 5,
-            "y": 27
-        },
-        {
-            "id": 1006,
-            "mapName": "Forest",
-            "x": 90,
-            "y": 16
-        },
-        {
-            "id": 1007,
-            "mapName": "Forest",
-            "x": 104,
-            "y": 33
-        },
-        {
-            "id": 1008,
-            "mapName": "Town",
-            "x": 10,
-            "y": 86
-        },
-        {
-            "id": 1009,
-            "mapName": "Town",
-            "x": 20,
-            "y": 89
-        },
-        {
-            "id": 1010,
-            "mapName": "Town",
-            "x": 28,
-            "y": 67
-        },
-        {
-            "id": 1011,
-            "mapName": "Town",
-            "x": 36,
-            "y": 56
-        },
-        {
-            "id": 1012,
-            "mapName": "Town",
-            "x": 43,
-            "y": 57
-        },
-        {
-            "id": 1013,
-            "mapName": "Town",
-            "x": 94,
-            "y": 82
-        },
-        {
-            "id": 1014,
-            "mapName": "Town",
-            "x": 45,
-            "y": 71
-        },
-        {
-            "id": 1015,
-            "mapName": "Town",
-            "x": 58,
-            "y": 86
-        },
-        {
-            "id": 1016,
-            "mapName": "Town",
-            "x": 101,
-            "y": 90
-        },
-        {
-            "id": 1017,
+            "id": 1002,
             "mapName": "Beach",
+            "detail": "ElliottCabin",
+            "label": "艾利欧特小屋",
             "x": 49,
             "y": 11
         },
         {
-            "id": 1018,
-            "mapName": "Town",
+            "id": 1003,
+            "mapName": "Beach",
+            "detail": "LonelyStone",
+            "label": "孤独的石头",
+            "x": 12,
+            "y": 23
+        },
+        {
+            "id": 1004,
+            "mapName": "Beach",
+            "detail": "FishShop_DefaultHours",
+            "label": "鱼店",
+            "x": 30,
+            "y": 34
+        },
+        {
+            "id": 1005,
+            "mapName": "BusStop",
+            "detail": "Default",
+            "label": "巴士站",
+            "x": 22,
+            "y": 11
+        },
+        {
+            "id": 1006,
+            "mapName": "Desert",
+            "detail": "Default",
+            "label": "沙漠",
+            "x": 6,
+            "y": 52
+        },
+        {
+            "id": 1007,
+            "mapName": "Farm",
+            "detail": "Default",
+            "label": "家",
+            "x": 64,
+            "y": 17
+        },
+        {
+            "id": 1008,
+            "mapName": "Forest",
+            "detail": "MarnieRanch",
+            "label": "玛妮的牧场",
+            "x": 90,
+            "y": 16
+        },
+        {
+            "id": 1009,
+            "mapName": "Forest",
+            "detail": "LeahCottage",
+            "label": "莉亚的农舍",
+            "x": 104,
+            "y": 33
+        },
+        {
+            "id": 1010,
+            "mapName": "Forest",
+            "detail": "WizardTower",
+            "label": "法师塔",
+            "x": 5,
+            "y": 27
+        },
+        {
+            "id": 1011,
+            "mapName": "Forest",
+            "detail": "AbandonedHouse",
+            "label": "废弃的屋子",
             "x": 34,
-            "y": 97
+            "y": 96
+        },
+        {
+            "id": 1012,
+            "mapName": "Forest",
+            "detail": "SewerPipe",
+            "label": "下水管道",
+            "x": 94,
+            "y": 100
+        },
+        {
+            "id": 1013,
+            "mapName": "Mountain",
+            "detail": "AdventureGuild",
+            "label": "冒险公会",
+            "x": 76,
+            "y": 9
+        },
+        {
+            "id": 1014,
+            "mapName": "Mountain",
+            "detail": "Carpenter",
+            "label": "木匠的商店",
+            "x": 12,
+            "y": 26
+        },
+        {
+            "id": 1015,
+            "mapName": "Mountain",
+            "detail": "Mines",
+            "label": "矿井",
+            "x": 54,
+            "y": 6
+        },
+        {
+            "id": 1016,
+            "mapName": "Mountain",
+            "detail": "Quarry",
+            "label": "采石场",
+            "x": 127,
+            "y": 11
+        },
+        {
+            "id": 1017,
+            "mapName": "Mountain",
+            "detail": "Tent",
+            "label": "帐篷",
+            "x": 29,
+            "y": 8
+        },
+        {
+            "id": 1018,
+            "mapName": "Railroad",
+            "detail": "Railroad",
+            "label": "铁路",
+            "x": 29,
+            "y": 45
         },
         {
             "id": 1019,
-            "mapName": "Town",
-            "x": 46,
-            "y": 90
+            "mapName": "Railroad",
+            "detail": "Spa",
+            "label": "温泉",
+            "x": 10,
+            "y": 57
         },
         {
-            "id": 1020, // Pam
-            "mapName": "Town",
-            "x": 72,
-            "y": 69
+            "id": 1020,
+            "mapName": "Forest",
+            "detail": "SecretWoods",
+            "label": "秘密森林",
+            "x": 0,
+            "y": 6
         },
         {
             "id": 1021,
             "mapName": "Town",
+            "detail": "AlexHouse",
+            "label": "河间大道",
             "x": 57,
             "y": 64
         },
         {
             "id": 1022,
-            "mapName": "Mountain",
-            "x": 12,
-            "y": 26
+            "mapName": "Town",
+            "detail": "Blacksmith",
+            "label": "铁匠",
+            "x": 94,
+            "y": 82
         },
         {
             "id": 1023,
-            "mapName": "Mountain",
-            "x": 29,
-            "y": 8
+            "mapName": "Town",
+            "detail": "CommunityCenter",
+            "label": "社区中心",
+            "x": 53,
+            "y": 20
         },
         {
             "id": 1024,
-            "mapName": "Mine",
-            "x": 18,
-            "y": 13
+            "mapName": "Town",
+            "detail": "Graveyard",
+            "label": "墓园",
+            "x": 47,
+            "y": 90
         },
         {
-            "id": 1025, // adventurer's guild
-            "mapName": "Mountain",
-            "x": 76,
-            "y": 9
+            "id": 1025,
+            "mapName": "Town",
+            "detail": "HaleyHouse",
+            "label": "2柳巷",
+            "x": 20,
+            "y": 89
         },
         {
             "id": 1026,
-            "mapName": "Mountain",
-            "x": 127,
-            "y": 11
+            "mapName": "Town",
+            "detail": "Hospital",
+            "label": "诊所",
+            "x": 36,
+            "y": 56
         },
         {
             "id": 1027,
             "mapName": "Town",
+            "detail": "JojaMart_Open",
+            "label": "Joja超市",
             "x": 95,
             "y": 51
         },
         {
             "id": 1028,
-            "mapName": "Beach",
-            "x": 30,
-            "y": 34
+            "mapName": "Town",
+            "detail": "ManorHouse",
+            "label": "镇长的庄园",
+            "x": 58,
+            "y": 86
         },
         {
             "id": 1029,
-            "mapName": "Railroad",
-            "x": 10,
-            "y": 57
+            "mapName": "Town",
+            "detail": "Museum",
+            "label": "博物馆和图书馆",
+            "x": 101,
+            "y": 90
         },
         {
             "id": 1030,
-            "mapName": "Woods",
-            "x": 58,
-            "y": 15
+            "mapName": "Town",
+            "detail": "Trailer",
+            "label": "拖车",
+            "x": 72,
+            "y": 69
         },
         {
             "id": 1031,
-            "mapName": "Forest",
-            "x": 34,
-            "y": 96
+            "mapName": "Town",
+            "detail": "PierreStore_InitialHours",
+            "label": "皮埃尔的杂货店",
+            "x": 43,
+            "y": 57
         },
         {
             "id": 1032,
             "mapName": "Town",
-            "x": 52,
-            "y": 20
+            "detail": "Saloon",
+            "label": "星之果实酒吧",
+            "x": 45,
+            "y": 71
         },
         {
             "id": 1033,
-            "mapName": "Forest",
-            "x": 94,
-            "y": 100
+            "mapName": "Town",
+            "detail": "SamHouse",
+            "label": "1柳巷",
+            "x": 10,
+            "y": 86
         },
         {
             "id": 1034,
-            "mapName": "Railroad",
-            "x": 29,
-            "y": 45
+            "mapName": "Town",
+            "detail": "Sewer",
+            "label": "下水道",
+            "x": 35,
+            "y": 97
         },
         {
             "id": 1035,
-            "mapName": "IslandWest",
-            "x": 77,
-            "y": 41
-        },
+            "mapName": "Town",
+            "detail": "TownSquare",
+            "label": "小镇广场",
+            "x": 29,
+            "y": 67
+        }
     ]
 }
