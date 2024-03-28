@@ -4,5 +4,5 @@
 This is a Stardew Valley mod that allows teleportation by clicking on the map, based on Aedenthorn's mod, compatible with version 1.6.
 
 ### note
-Now you can teleport with the mod but the coordinates(assert/coordinates.json) is not correct, I Will fix it in few days.
+I am not sure if ES RSV SVE coordinates are correct. If they are not, I will allocate time later to make them compatible.
  
