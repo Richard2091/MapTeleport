@@ -6,5 +6,7 @@
   "UniqueID": "Richard2091.MapTeleport",
   "EntryDll": "MapTeleport.dll",
   "MinimumApiVersion": "4.0.0",
-  "UpdateKeys": []
+  "UpdateKeys": [
+    "GitHub:Richard2091/MapTeleport"
+  ]
 }
