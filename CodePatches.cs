@@ -11,7 +11,9 @@ namespace MapTeleport
     public partial class ModEntry
     {
         protected static CoordinatesList addedCoordinates;
-        public static bool CheckClickableComponents(List<ClickableComponent> components, int topX, int topY, int x, int y)
+
+        public static bool CheckClickableComponents(List<ClickableComponent> components, int topX, int topY, int x,
+            int y)
         {
             SMonitor.Log($"clicked x:{x} y:{y}", LogLevel.Debug);
             if (!Config.ModEnabled)
@@ -21,59 +23,49 @@ namespace MapTeleport
                 addedCoordinates = SHelper.Data.ReadJsonFile<CoordinatesList>("coordinates.json");
                 if (addedCoordinates == null) addedCoordinates = new CoordinatesList();
             }
+
             var coordinates = SHelper.GameContent.Load<CoordinatesList>(dictPath);
-            bool added = false;
             bool found = false;
             // Sort boundries so that the function will warp to the smallest overlapping area
-            components.Sort(delegate (ClickableComponent a, ClickableComponent b)
+            components.Sort(delegate(ClickableComponent a, ClickableComponent b)
             {
                 return (a.bounds.Height * a.bounds.Width).CompareTo(b.bounds.Height * b.bounds.Width);
             });
-            foreach (ClickableComponent area in components)
-            { 
-                // 计算偏移适配不同屏幕
-                string altId = $"{area.bounds.X - topX}.{area.bounds.Y - topY}";
-                // 匹配算法 从配置中读取当前点击区域的传送点
-                Predicate<Coordinates> findMatch = (o) => o.id == area.myID || (area.myID == ClickableComponent.ID_ignore && o.altId == altId);
-                Coordinates teleportCoordinate = coordinates.coordinates.Find(findMatch);
-                // 如果没有匹配到当前区域内的传送点
-                if (teleportCoordinate == null)
-                {
-                    teleportCoordinate = addedCoordinates.coordinates.Find(findMatch);
-                    if (teleportCoordinate == null)
-                    {
-                        if (area.myID == ClickableComponent.ID_ignore)
-                        {
-                            addedCoordinates.Add(new Coordinates() { name = area.name, altId = altId, enabled = false });
-                        }
-                        else
-                        {
-                            addedCoordinates.Add(new Coordinates() { name = area.name, id = area.myID, enabled = false });
-                        }
-                        SMonitor.Log($"Added: {{ \"name\":\"{area.name}\", \"id\":{area.myID}, \"altId\":\"{altId}\" }}", LogLevel.Trace);
-                        added = true;
-                    }
-                    // else check if the coordinate is enabled
-                }
-                
-                //SMonitor.Log($"now check area id:{area.myID} name:{area.name} label:{area.label} bounds.X:{area.bounds.X} bounds.Y{area.bounds.Y}", LogLevel.Debug);
-                //SMonitor.Log($"teleport coordinate x:{teleportCoordinate.x} y:{teleportCoordinate.y}", LogLevel.Debug);
-
-                if (area.containsPoint(x, y) && teleportCoordinate.enabled)
-                {
-                    SMonitor.Log($"Teleporting to {area.name} ({(teleportCoordinate.altId != null ? teleportCoordinate.altId : teleportCoordinate.id)}), {teleportCoordinate.mapName}, {teleportCoordinate.x},{teleportCoordinate.y}", LogLevel.Debug);
-                    Game1.activeClickableMenu?.exitThisMenu(true);
-                    Game1.warpFarmer(teleportCoordinate.mapName, teleportCoordinate.x, teleportCoordinate.y, false);
-                    found = true;
-                    break;
-                }
-            }
-            if (added)
+            // 查找点击的组件
+            foreach (ClickableComponent component in components)
             {
-                SHelper.Data.WriteJsonFile("coordinates.json", addedCoordinates);
+                // 判断点击区域且检查是否可见
+                if (component.containsPoint(x, y) && component.visible)
+                {
+                    string componentName = component.name;
+                    int underscoreIndex = componentName.IndexOf('_');
+                    // 如果包含下划线，则进行截取
+                    if (underscoreIndex != -1)
+                    {
+                        componentName = componentName.Substring(0, underscoreIndex);
+                    }
+                    SMonitor.Log($"Component Information：\nID:{component.myID}, name:{component.name}, label:{component.label}",
+                        LogLevel.Debug);
+                    // 获取具体坐标
+                    foreach (Coordinates tpCoordinate in coordinates.coordinates)
+                    {
+                        if (componentName.Equals(tpCoordinate.displayName))
+                        {
+                            SMonitor.Log(
+                                $"Teleporting to {componentName}\nCoordinate: {tpCoordinate.teleportName}({tpCoordinate.x},{tpCoordinate.y})",
+                                LogLevel.Debug);
+                            Game1.activeClickableMenu?.exitThisMenu(true);
+                            Game1.warpFarmer(tpCoordinate.teleportName, tpCoordinate.x, tpCoordinate.y,
+                                false);
+                            found = true;
+                            break;
+                        }
+                    }
+                }
             }
-            return found;
+            SMonitor.Log("No teleportation coordinate found.");
 
+            return found;
         }
 
         [HarmonyPatch(typeof(MapPage), nameof(MapPage.receiveLeftClick))]
@@ -82,7 +74,8 @@ namespace MapTeleport
             public static bool Prefix(MapPage __instance, int x, int y)
             {
                 List<ClickableComponent> clickableComponents = new List<ClickableComponent>(__instance.points.Values);
-                bool found = CheckClickableComponents(clickableComponents, __instance.xPositionOnScreen, __instance.yPositionOnScreen, x, y);
+                bool found = CheckClickableComponents(clickableComponents, __instance.xPositionOnScreen,
+                    __instance.yPositionOnScreen, x, y);
                 return !found;
                 //SMonitor.Log($"clicked x:{x} y:{y}", LogLevel.Debug);
                 //return false;
@@ -94,13 +87,14 @@ namespace MapTeleport
         {
             public static bool Prefix(IClickableMenu __instance, int x, int y)
             {
-
                 bool found = false;
                 if (__instance.allClickableComponents != null && __instance.GetType().Name == "RSVWorldMap")
                 {
                     // RSV uses component x,y's that are not offset, however they need to be offset to check for the mouse position
-                    found = CheckClickableComponents(__instance.allClickableComponents, 0, 0, x - __instance.xPositionOnScreen, y - __instance.yPositionOnScreen);
+                    found = CheckClickableComponents(__instance.allClickableComponents, 0, 0,
+                        x - __instance.xPositionOnScreen, y - __instance.yPositionOnScreen);
                 }
+
                 return !found;
             }
         }
