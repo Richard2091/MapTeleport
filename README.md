@@ -14,7 +14,7 @@ Incorrect teleport points for SVE, RSV, ES
 
 
 # 备注 (note):
-因为我没有安装SVE等模组， 而且我平时比较忙，所以修复这些坐标的工作优先级会比较低，如果有时间我会尝试适配的
+因为我没有安装SVE等模组， 而且我平时比较忙，所以修复这些坐标的工作优先级会比较低，如果有时间我会尝试适配的。如果还有其他问题，欢迎提Issue。
 
-Since I haven't installed the SVE, RSV, ES mods, and I'm usually quite busy, the priority for fixing them will be relatively low. I will try when I have time. Pull Requests are welcome.
+Since I haven't installed the SVE, RSV, ES mods, and I'm usually quite busy, the priority for fixing them will be relatively low. I will try when I have time. Pull Requests are welcome.If there are any other questions, feel free to raise an issue.
  
