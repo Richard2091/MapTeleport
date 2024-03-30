@@ -53,20 +53,18 @@ namespace MapTeleport
                 {
                     coordinatesList.AddAll(Helper.Data.ReadJsonFile<CoordinatesList>("found_coordinates.json"));
                 }
-                if (isSVE)
-                {
+                
+                if (isSVE) {
                     coordinatesList.AddAll(Helper.Data.ReadJsonFile<CoordinatesList>("assets/sve_coordinates.json"));
                 }
-                else
-                {
+                else {
                     coordinatesList.AddAll(Helper.Data.ReadJsonFile<CoordinatesList>("assets/coordinates.json"));
                 }
-                if (hasES)
-                {
+                
+                if (hasES) {
                     coordinatesList.AddAll(Helper.Data.ReadJsonFile<CoordinatesList>("assets/es_coordinates.json"));
                 }
-                if (hasRSV)
-                {
+                if (hasRSV) {
                     coordinatesList.AddAll(Helper.Data.ReadJsonFile<CoordinatesList>("assets/rsv_coordinates.json"));
                 }
                 e.LoadFrom(() => coordinatesList, AssetLoadPriority.Exclusive);

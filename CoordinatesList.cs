@@ -20,11 +20,11 @@ namespace MapTeleport
     }
     public class Coordinates
     {
-        public string name;
-        public string mapName;
+        public int id;
+        public string displayName;
+        public string teleportName;
         public int x;
         public int y;
-        public int id;
         public string altId;
         public bool enabled = true;
     }
